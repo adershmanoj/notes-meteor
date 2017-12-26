@@ -1,7 +1,9 @@
 import {Link} from 'react-router';
 import React from 'react';
 import {Meteor} from 'meteor/meteor';
-export default class Login extends React.Component{
+import {createContainer} from 'meteor/react-meteor-data';
+
+export class Login extends React.Component{
     constructor(props){
         super(props);
         this.state={
@@ -12,9 +14,7 @@ export default class Login extends React.Component{
         e.preventDefault();
         let email=this.refs.email.value.trim();
         let password=this.refs.password.value.trim();
-        if(password.length<9)
-            return this.setState({error:'Password must be more than 8 characters long'});
-        Meteor.loginWithPassword({email}, password, (err)=>{
+        this.props.loginWithPassword({email}, password, (err)=>{
             if(err)
                 this.setState({error:err.reason})
             else
@@ -38,3 +38,11 @@ export default class Login extends React.Component{
         )   
     }
 }
+Login.propTypes = {
+  loginWithPassword: React.PropTypes.func.isRequired
+}
+export default createContainer(()=>{
+  return {
+    loginWithPassword: Meteor.loginWithPassword
+  };
+}, Login);
