@@ -20,7 +20,7 @@ Meteor.methods({
       title: '',
       body: '',
       userId: this.userId,
-      updatedAt: moment.valueOf()
+      updatedAt: moment().valueOf()
     });
   },
   'notes.remove'(_id){
