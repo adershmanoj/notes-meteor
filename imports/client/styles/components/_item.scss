@@ -1,24 +1,54 @@
 //Item Lis
 .item-list{
-  background-color: white;
-  border: 1px solid $grey;
-  overflow-y: auto;
-  width: 100%;
+background-color: white;
+border: 1px solid $grey;
+overflow-y: auto;
+width: 100%;
+}
+
+.item-list__header{
+  display: flex;
+  flex-direction: column;
+  padding: $space;
+  
 }
 
 //item
 .item{
-    background: $item-bg;
-    border: 1px solid $item-border;
-    margin-bottom: $space;
-    padding: $space;
+  cursor: pointer;
+  padding: $space;
+  border-left: $item-border-width solid transparent;
+  transition: background-color .2s ease, border-left .2s linear;
+  
 }
-.item__message{
-    color: $item-text-color;
-}   
-.item__status{
-    color: $item-text-color;
-    font-style: italic;
-    text-align: center;
-    margin: 0;
+.item:hover{
+  background-color: $light-grey;
+  border-left: $item-border-width solid $grey;
+}
+
+.item--selected, .item--selected:hover{
+  background-color: $light-grey;
+  border-left: $item-border-width solid $brand-primary;
+}
+
+.item__title{
+  font-weight: normal;
+  font-size: $base-font-size;
+  margin-bottom: 0.4rem;
+}
+
+.item--selected .item__title{
+  font-weight: bold;
+}
+
+.item__subtitle{
+  color: $dark-grey;
+  margin: 0;
+}
+
+//Empty Item
+.empty-item{
+  font-style: italic;
+  padding: $space;
+  text-align: center;
 }
