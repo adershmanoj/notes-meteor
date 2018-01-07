@@ -3,14 +3,25 @@ import { Accounts } from 'meteor/accounts-base';
 import {createContainer} from 'meteor/react-meteor-data';
 
 export const PrivateHeader = (props)=>{
-    return(<div className='header'><div className='header__content'><h1 className='header__title'>{props.title}</h1><button className='button button--link-text' onClick={()=>props.handleLogout()}>logout</button></div></div>)  
+  const navImageSrc = props.isNavOpen ? '/images/x.svg' : '/images/bars.svg';
+  return(
+    <div className='header'>
+      <div className='header__content'>
+        <img className="header__nav-toggle" src={navImageSrc} onClick={()=>props.handleNavToggle()}/>
+        <h1 className='header__title'>{props.title}</h1>
+        <button className='button button--link-text' onClick={()=>props.handleLogout()}>logout</button>
+      </div>
+    </div>)  
 }
 PrivateHeader.propTypes={
-    title: React.PropTypes.string.isRequired,
-    handleLogout: React.PropTypes.func.isRequired
+  title: React.PropTypes.string.isRequired,
+  handleLogout: React.PropTypes.func.isRequired,
+  handleNavToggle: React.PropTypes.func.isRequired
 };
 export default createContainer(()=>{
-  return {
-    handleLogout: ()=>Accounts.logout()
-  }
+return {
+  handleLogout: () => Accounts.logout(),
+  isNavOpen: Session.get('isNavOpen'),
+  handleNavToggle: () => Session.set('isNavOpen', !Session.get('isNavOpen'))
+}
 }, PrivateHeader);
