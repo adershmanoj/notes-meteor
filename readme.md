@@ -1,3 +1,7 @@
-# Boilerplate Meteor Project
+# Notes App
 
-Basic react and auth setup
+This is a notes application built on Meteor and React
+
+## Demo
+https://notes-adershmanoj.herokuapp.com
+

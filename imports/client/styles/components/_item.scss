@@ -1,9 +1,11 @@
 //Item Lis
 .item-list{
-background-color: white;
-border: 1px solid $grey;
-overflow-y: auto;
-width: 100%;
+  background-color: white;
+  border: 1px solid $grey;
+  overflow-y: auto;
+  width: 100%;
+  overflow-scrolling: touch;
+  -webkit-overflow-scrolling: touch;
 }
 
 .item-list__header{
